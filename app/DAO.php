@@ -17,7 +17,7 @@ abstract class DAO
     private static $host   = 'mysql:host=127.0.0.1;port=3306';
     private static $dbname = 'forumgeorges';
     // private static $dbuser = 'root';
-    private static $dbuser = 'localhost';
+    private static $dbuser = 'root';
     private static $dbpass = '';
 
     private static $bdd;
@@ -29,14 +29,14 @@ abstract class DAO
     {
 
         self::$bdd = new \PDO(
-            $dbuser,
+            self::$host . ';dbname=' . self::$dbname,
+            self::$dbuser,
             self::$dbpass,
             array(
                 \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'",
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-            )self::$host . ';dbname=' . self::$dbname,
-            self::
+            )
         );
     }
 

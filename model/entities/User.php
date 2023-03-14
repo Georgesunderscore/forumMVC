@@ -50,4 +50,76 @@ final class User extends Entity
         $this->dateinscription = new \DateTime($date);
         return $this;
     }
+
+    /**
+     * Get the value of pseudonyme
+     */
+    public function getPseudonyme()
+    {
+        return $this->pseudonyme;
+    }
+
+    /**
+     * Set the value of pseudonyme
+     */
+    public function setPseudonyme($pseudonyme): self
+    {
+        $this->pseudonyme = $pseudonyme;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     */
+    public function setEmail($email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     */
+    public function setPassword($password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     */
+    public function setRole($role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 }

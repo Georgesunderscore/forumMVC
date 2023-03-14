@@ -4,7 +4,7 @@ namespace App;
 
 abstract class Manager
 {
-    //possible que je peut ajouter 
+    //possible que je peut ajouter  ex : les proprietes dois etre defini dans postmanager qui extends manager pour utiliser les parameters 
     // protected $className;
     // protected $tableName;
     //public final function __construct(){}
