@@ -8,7 +8,7 @@ final class category extends Entity
 {
 
     private $id;
-    private $nom;
+    private $categoryName;
 
     public function __construct($data)
     {
@@ -37,19 +37,19 @@ final class category extends Entity
 
 
     /**
-     * Get the value of nom
+     * Get the value of categoryName
      */
-    public function getNom()
+    public function getCategoryName()
     {
-        return $this->nom;
+        return $this->categoryName;
     }
 
     /**
-     * Set the value of nom
+     * Set the value of categoryName
      */
-    public function setNom($nom): self
+    public function setCategoryName($categoryName): self
     {
-        $this->nom = $nom;
+        $this->categoryName = $categoryName;
 
         return $this;
     }

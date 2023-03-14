@@ -19,4 +19,17 @@ class TopicManager extends Manager
         // $this->className = "Model\Entities\Topic";
         // $this->tableName = "topic";
     }
+
+    public function findTopicsByCategory($id)
+    {
+
+        $sql = "select *
+                from " . $this->tableName . " t
+                where t.category_id = :id";
+
+        return $this->getMultipleResults(
+            DAO::select($sql, ['id' => $id]),
+            $this->className
+        );
+    }
 }

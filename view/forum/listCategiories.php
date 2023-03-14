@@ -10,6 +10,6 @@ $categories = $result["data"]['categories'];
 foreach ($categories as $category) {
 
 ?>
-    <p><?= $category->getName() ?></p>
+    <p><?= $category->getCategoryName() ?></p>
 <?php
 }
