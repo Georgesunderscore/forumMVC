@@ -1,19 +1,22 @@
 <?php
-    namespace Model\Managers;
-    
-    use App\Manager;
-    use App\DAO;
-    use Model\Managers\TopicManager;
 
-    class TopicManager extends Manager{
+namespace Model\Managers;
 
-        protected $className = "Model\Entities\Topic";
-        protected $tableName = "topic";
+use App\Manager;
+use App\DAO;
 
+class TopicManager extends Manager
+{
 
-        public function __construct(){
-            parent::connect();
-        }
+    protected $className = "Model\Entities\Topic";
+    protected $tableName = "topic";
 
 
+    public function __construct()
+    {
+        parent::connect();
+        //possible dappler le constructure final de labstract class
+        // $this->className = "Model\Entities\Topic";
+        // $this->tableName = "topic";
     }
+}
