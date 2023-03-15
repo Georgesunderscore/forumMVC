@@ -9,7 +9,7 @@ final class Topic extends Entity
 
         private $id;
         private $title;
-        private $creationdate;
+        private $dateCreation;
         private $closed;
         private $user;
 
@@ -78,17 +78,18 @@ final class Topic extends Entity
                 return $this;
         }
 
-        public function getCreationdate()
+        public function getDateCreation()
         {
-                $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
+                $formattedDate = $this->dateCreation->format("d/m/Y, H:i:s");
                 return $formattedDate;
         }
 
-        public function setCreationdate($date)
+        public function setDateCreation($date)
         {
-                $this->creationdate = new \DateTime($date);
+                $this->dateCreation = new \DateTime($date);
                 return $this;
         }
+
 
         /**
          * Get the value of closed
