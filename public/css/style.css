@@ -116,7 +116,7 @@ button:hover {
     border-radius: 10px;
     background-color: #856e6e;
     overflow: hidden;
-    width: 120px;
+    width: auto;
     height: 30px;
   }
   

@@ -20,7 +20,13 @@ $categories = $result["data"]['categories'];
         ?>
             <tr>
                 <td>
-                    <p><?= $category->getCategoryName() ?></p>
+                    <p><?= $category->getCategoryName() ?>
+                    <div class="navbaritem nav-right ">
+                        <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">List Topics by cat <?= $category->getId() ?></a>
+
+                    </div>
+                    </p>
+
                 </td>
             </tr>
         <?php
