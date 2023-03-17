@@ -17,16 +17,19 @@ class PostManager extends Manager
         parent::connect();
     }
 
-    public function findPostsByTopic($id)
-    {
 
+    public function findPostsByTopic($id, $order)
+    {
+        $orderQuery = ($order) ? "ORDER BY  p." . $order[0] : "";
         $sql = "select *
                 from " . $this->tableName . " p
-                where p.topic_id = :id";
+                where p.topic_id = :id
+                $orderQuery DESC ";
 
         return $this->getMultipleResults(
             DAO::select($sql, ['id' => $id]),
             $this->className
         );
     }
+
 }

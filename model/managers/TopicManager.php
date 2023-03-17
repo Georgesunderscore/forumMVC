@@ -25,20 +25,16 @@ class TopicManager extends Manager
         // var_dump($id);
         // var_dump($order);
 
-        $orderQuery = ($order) ? " t." . $order[0] : "";
-
-
-        $tri = " " . $order[1];
-
+        $orderQuery = ($order) ? "ORDER BY  t." . $order[0] : "";
         // var_dump($orderQuery);
         $sql = "select *
                 from " . $this->tableName . " t
                 where t.category_id = :id
-                ORDER BY :order DESC ";
+                $orderQuery DESC ";
         // var_dump($sql);
 
         return $this->getMultipleResults(
-            DAO::select($sql, ['id' => $id, 'order' => $orderQuery], true),
+            DAO::select($sql, ['id' => $id]),
             $this->className
         );
     }

@@ -23,8 +23,21 @@ class UserManager extends Manager
             from " . $this->tableName . " u
             where u.email = :email";
 
-        return $this->getMultipleResults(
+        return $this->getOnOrNullResult(
             DAO::select($sql, ['email' => $email], false),
+            $this->className
+        );
+    }
+    
+    //get user by pseudonyme
+    public function findOneByUser($user)
+    {
+        $sql = "select *
+            from " . $this->tableName . " u
+            where u.pseudonyme = :user";
+
+        return $this->getOnOrNullResult(
+            DAO::select($sql, ['user' => $user], false),
             $this->className
         );
     }

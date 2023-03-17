@@ -12,6 +12,7 @@ final class Topic extends Entity
         private $dateCreation;
         private $closed;
         private $user;
+        private $category;
 
         public function __construct($data)
         {
@@ -107,6 +108,26 @@ final class Topic extends Entity
         public function setClosed($closed)
         {
                 $this->closed = $closed;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of category
+         */ 
+        public function getCategory()
+        {
+                return $this->category;
+        }
+
+        /**
+         * Set the value of category
+         *
+         * @return  self
+         */ 
+        public function setCategory($category)
+        {
+                $this->category = $category;
 
                 return $this;
         }

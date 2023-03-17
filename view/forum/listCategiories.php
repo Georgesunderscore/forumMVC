@@ -5,10 +5,10 @@ $categories = $result["data"]['categories'];
 ?>
 
 <h1>liste categories</h1>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <th>Nom</th>
+            <th>Category Name</th>
         </tr>
     </thead>
     <tbody>
@@ -20,12 +20,14 @@ $categories = $result["data"]['categories'];
         ?>
             <tr>
                 <td>
-                    <p><?= $category->getCategoryName() ?>
-                    <div class="navbaritem nav-right ">
-                        <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">List Topics by cat <?= $category->getId() ?></a>
+                    <div ><?= $category->getCategoryName() ?>
+                </td>
+                <td>
+
+                    <div class="navbaritem navbartabitem nav-right ">
+                        <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">>></a>
 
                     </div>
-                    </p>
 
                 </td>
             </tr>

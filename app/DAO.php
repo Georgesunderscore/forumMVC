@@ -91,31 +91,16 @@ abstract class DAO
      */
     public static function select($sql, $params = null, bool $multiple = true): ?array
     {
-        try {
+        try{
             $stmt = self::$bdd->prepare($sql);
-            // var_dump($stmt);
-            foreach ($params as $key => $value) {
-                if ($key == "order") {
-                    var_dump($value);
-                    // $stmt->bindParam(':order', $value, \PDO::PARAM_INT);
-                }
-            }
-
-            var_dump($stmt);
-            var_dump($params);
-            // die;
             $stmt->execute($params);
-
-
-            // die;
-
-            // var_dump($params);
-
+          
             $results = ($multiple) ? $stmt->fetchAll() : $stmt->fetch();
 
             $stmt->closeCursor();
             return ($results == false) ? null : $results;
-        } catch (\Exception $e) {
+        }
+        catch(\Exception $e){
             echo $e->getMessage();
         }
     }

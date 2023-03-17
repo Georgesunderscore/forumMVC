@@ -4,7 +4,7 @@ namespace Model\Entities;
 
 use App\Entity;
 
-final class Poste extends Entity
+final class Post extends Entity
 {
 
     private $id;
@@ -58,13 +58,13 @@ final class Poste extends Entity
     }
 
 
-    public function getCreationdate()
+    public function getDateCreation()
     {
         $formattedDate = $this->datecreation->format("d/m/Y, H:i:s");
         return $formattedDate;
     }
 
-    public function setCreationdate($date)
+    public function setDateCreation($date)
     {
         $this->datecreation = new \DateTime($date);
         return $this;

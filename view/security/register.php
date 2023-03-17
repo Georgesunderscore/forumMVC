@@ -12,6 +12,13 @@
             </div>
 
             <div class="form-group">
+                <label for="pseudo"><b>Name :</b></label>
+                <input id="pseudo" type="text" name="pseudo" placeholder="Pseudoyme" required />
+            </div>
+
+            
+
+            <div class="form-group">
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required>
             </div>
@@ -21,14 +28,10 @@
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
             </div>
 
-            <div class="form-group">
-                <label>Pseudonyme :</label>
-                <input type="text" name="pseudo" />
-            </div>
 
             <!-- visible for adminlist fix for roles #}-->
             <div class="form-group">
-                <label>Role :</label>
+                <label>if admin visible Role :</label>
                 <input name="role" value="membre" readonly hidden />
             </div>
 

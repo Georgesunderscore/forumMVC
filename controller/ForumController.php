@@ -50,6 +50,20 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
+    public function listPostsByTopic($id)
+    {
+
+        $postManager = new PostManager();
+
+        return [
+            "view" => VIEW_DIR . "forum/listPosts.php",
+            "data" => [
+                "posts" => $postManager->findPostsByTopic($id, ["dateCreation", "DESC"])
+            ]
+        ];
+    }
+    
+
     public function listCategories()
     {
         $categoryManager = new CategoryManager();
