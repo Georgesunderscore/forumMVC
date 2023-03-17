@@ -54,11 +54,13 @@ class ForumController extends AbstractController implements ControllerInterface
     {
 
         $postManager = new PostManager();
+        $topicManager = new TopicManager();
 
         return [
             "view" => VIEW_DIR . "forum/listPosts.php",
             "data" => [
-                "posts" => $postManager->findPostsByTopic($id, ["dateCreation", "DESC"])
+                "posts" => $postManager->findPostsByTopic($id, ["dateCreation", "DESC"]),
+                "topic" => $topicManager->findOneById($id)
             ]
         ];
     }
@@ -74,4 +76,41 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
+
+    public function topicForm()
+    {
+        $categoryManager = new CategoryManager();
+        return [
+            "view" => VIEW_DIR . "forum/topicForm.php",
+            "data" => [
+                "categories" => $categoryManager->findAll(["categoryName", "DESC"])
+            ]
+        ];
+    }
+
+     // partie ajout 
+     public function addTopic($id)
+     {
+        if (isset($_POST['submit'])) {
+            $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+            echo("category".$category);
+
+             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+             $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
+             $user = $id;
+
+             $topicManager = new TopicManager;
+             $topicManager->addTopic($title, $sujet, $category, $user);
+            $this->redirectTo('forum', 'listTopics');
+
+            // return [
+            //     "view" => VIEW_DIR . "forum/listTopics.php",
+            //     "data" => [
+            //         "topics" => $topicManager->findAll(["dateCreation", "DESC"])
+            //     ]
+            // ];
+    
+         }
+     }
+    
 }

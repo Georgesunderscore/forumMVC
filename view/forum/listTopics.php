@@ -9,6 +9,10 @@ $topics = $result["data"]['topics'];
 
 <h1>liste list topics</h1>
 
+    <div class="navbaritem navbartabitem nav-right ">
+        <a href="index.php?ctrl=forum&action=topicForm">add +</a>
+    </div>
+
 <table class="table">
     <thead>
         <tr>
@@ -36,10 +40,8 @@ $topics = $result["data"]['topics'];
 
                     <div class="navbaritem navbartabitem nav-left ">
                         <a href="index.php?ctrl=forum&action=editTopic&id=<?= $topic->getId() ?>">edit</a>
-                        
                     </div>
                     <div class="navbaritem navbartabitem nav-left ">
-                        
                         <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">>></a>
                     </div>
                     

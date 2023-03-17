@@ -4,10 +4,13 @@
 <?php
 
 $posts = $result["data"]['posts'];
+$topic = $result["data"]['topic'];
+
 
 ?>
 
-<h1>liste list posts</h1>
+<h1>liste list posts pour le sujet <?= $topic->getTitle()?></h1>
+<h2>Sujet : <?= $topic->getSujet()?></h2>
 <table class="table">
     <thead>
         <tr>

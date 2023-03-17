@@ -38,4 +38,19 @@ class TopicManager extends Manager
             $this->className
         );
     }
+
+    public function addTopic($title, $sujet, $category, $user)
+    {
+
+        $topicManager = new TopicManager;
+        $data = ['title' => $title,'sujet' => $sujet, 'locked' => '0',
+                 'category_id' => $category, 'user_id' => $user];
+        if ($title && $sujet) {
+            $last = $topicManager->add($data);
+            
+        }
+    }
+
+
+
 }
