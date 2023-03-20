@@ -64,7 +64,7 @@ class ForumController extends AbstractController implements ControllerInterface
             ]
         ];
     }
-    
+
 
     public function listCategories()
     {
@@ -84,23 +84,24 @@ class ForumController extends AbstractController implements ControllerInterface
             "view" => VIEW_DIR . "forum/topicForm.php",
             "data" => [
                 "categories" => $categoryManager->findAll(["categoryName", "DESC"])
+
             ]
         ];
     }
 
-     // partie ajout 
-     public function addTopic($id)
-     {
+    // partie ajout id utilisateur 
+    public function addTopic($id)
+    {
         if (isset($_POST['submit'])) {
             $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
-            echo("category".$category);
+            echo ("category" . $category);
 
-             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
-             $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
-             $user = $id;
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
+            $user = $id;
 
-             $topicManager = new TopicManager;
-             $topicManager->addTopic($title, $sujet, $category, $user);
+            $topicManager = new TopicManager;
+            $topicManager->addTopic($title, $sujet, $category, $user);
             $this->redirectTo('forum', 'listTopics');
 
             // return [
@@ -109,8 +110,53 @@ class ForumController extends AbstractController implements ControllerInterface
             //         "topics" => $topicManager->findAll(["dateCreation", "DESC"])
             //     ]
             // ];
-    
-         }
-     }
-    
+
+        }
+    }
+
+    //edittopic avec id du topic 
+
+    public function editTopicForm($id)
+    {
+        //topic find by id 
+        $topicManager = new TopicManager();
+        $categoryManager = new CategoryManager();
+        return [
+            "view" => VIEW_DIR . "forum/editTopicForm.php",
+            "data" => [
+                "categories" => $categoryManager->findAll(["categoryName", "DESC"]),
+                "topic" => $topicManager->findOneById($id)
+            ]
+        ];
+    }
+
+    public function modifyTopic($id)
+    {
+        //topic find by id 
+        $topicManager = new TopicManager();
+        $user = 1; //lire session user 
+
+        // if (isset($_GET['id'])) {
+        //     $id = $_GET['id'];
+        // }
+        
+        //get from variable 
+        $idTopic = $id;
+
+
+
+        if (isset($_POST['submit'])) {
+            $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
+            echo ("category" . $category);
+
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
+            $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            // todo update topic 
+            $topicManager->updateTopic($idTopic, $title, $sujet, $category, $user);
+
+
+            $this->redirectTo('forum', 'listTopics');
+        }
+    }
 }

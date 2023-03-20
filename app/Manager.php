@@ -77,6 +77,53 @@ abstract class Manager
         }
     }
 
+    // update($data)
+    public function update($data)
+    {
+        //$keys = ['username' , 'password', 'email']
+        $keys = array_keys($data);
+        //$values = ['Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com']
+        $values = array_values($data);
+        //(["id" => $id]
+        $params = [];
+        // UPDATE table
+        // SET colonne_1 = 'valeur 1', colonne_2 = 'valeur 2', colonne_3 = 'valeur 3'
+        // WHERE condition
+        $sql = "update " . $this->tableName . " ";
+        $buildsql = "";
+
+
+        foreach ($keys as $key) {
+            if (!str_contains($key, 'id')) {
+                foreach ($values as $value) {
+                    $buildsql = $buildsql . " SET " . $key . '=:' . $key . ' ';
+                    $params[] = $key . '=>' . $value;
+                }
+            }
+        }
+
+        $condition = "";
+        foreach ($data as $key => $value) {
+            if (str_contains($key, 'id')) {
+                $condition =  $key . "" . $value;
+            }
+        }
+
+        $sql = $sql . $buildsql;
+        $sql = $sql . " WHERE " . $condition;
+
+        //update 
+        try {
+            echo ($sql);
+            echo ($params);
+
+            return DAO::update($sql, $params);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
     public function delete($id)
     {
         $sql = "DELETE FROM " . $this->tableName . "

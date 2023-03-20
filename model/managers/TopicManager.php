@@ -43,14 +43,22 @@ class TopicManager extends Manager
     {
 
         $topicManager = new TopicManager;
-        $data = ['title' => $title,'sujet' => $sujet, 'locked' => '0',
-                 'category_id' => $category, 'user_id' => $user];
+        $data = [
+            'title' => $title, 'sujet' => $sujet, 'locked' => '0',
+            'category_id' => $category, 'user_id' => $user
+        ];
         if ($title && $sujet) {
             $last = $topicManager->add($data);
-            
         }
     }
+    // updateTopic($idTopic,$title, $sujet, $category, $user);
+    public function updateTopic($id, $title, $sujet, $category, $user)
+    {
 
-
-
+        $topicManager = new TopicManager;
+        $data = ['id_topic' => $id, 'title' => $title, 'sujet' => $sujet, 'locked' => '0', 'category_id' => $category, 'user_id' => $user];
+        if ($title && $sujet) {
+            $last = $topicManager->update($data);
+        }
+    }
 }

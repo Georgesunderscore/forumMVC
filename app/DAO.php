@@ -91,16 +91,15 @@ abstract class DAO
      */
     public static function select($sql, $params = null, bool $multiple = true): ?array
     {
-        try{
+        try {
             $stmt = self::$bdd->prepare($sql);
             $stmt->execute($params);
-          
+
             $results = ($multiple) ? $stmt->fetchAll() : $stmt->fetch();
 
             $stmt->closeCursor();
             return ($results == false) ? null : $results;
-        }
-        catch(\Exception $e){
+        } catch (\Exception $e) {
             echo $e->getMessage();
         }
     }
