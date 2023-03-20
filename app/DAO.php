@@ -43,13 +43,17 @@ abstract class DAO
     public static function insert($sql)
     {
         try {
+            echo $sql;
             $stmt = self::$bdd->prepare($sql);
+
+            // die();
             $stmt->execute();
             //on renvoie l'id de l'enregistrement qui vient d'être ajouté en base, 
             //pour s'en servir aussitôt dans le controleur
             return self::$bdd->lastInsertId();
         } catch (\Exception $e) {
             echo $e->getMessage();
+            // die();
         }
     }
 
@@ -57,19 +61,22 @@ abstract class DAO
     {
         echo "<br>sql=" . $sql;
 
-        foreach ($params as $key) {
-            echo ("" . $key);
+        foreach ($params as $key => $val) {
+            echo ("key " . $key);
+            echo ("val " . $val);
             // echo ('val' . $val);
         }
 
         try {
+
+
             $stmt = self::$bdd->prepare($sql);
 
             //on renvoie l'état du statement après exécution (true ou false)
             return $stmt->execute($params);
         } catch (\Exception $e) {
-
             echo $e->getMessage();
+            die();
         }
     }
 

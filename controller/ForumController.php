@@ -90,7 +90,7 @@ class ForumController extends AbstractController implements ControllerInterface
     }
 
     // partie ajout id utilisateur 
-    public function addTopic($id)
+    public function addTopic()
     {
         if (isset($_POST['submit'])) {
             $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -98,10 +98,11 @@ class ForumController extends AbstractController implements ControllerInterface
 
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
             $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
-            $user = $id;
+            $user = 1;
 
             $topicManager = new TopicManager;
             $topicManager->addTopic($title, $sujet, $category, $user);
+
             $this->redirectTo('forum', 'listTopics');
 
             // return [
@@ -151,7 +152,7 @@ class ForumController extends AbstractController implements ControllerInterface
 
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS);
             $sujet = filter_input(INPUT_POST, 'sujet', FILTER_SANITIZE_SPECIAL_CHARS);
-
+            $user = 1;
             // todo update topic 
             $topicManager->updateTopic($idTopic, $title, $sujet, $category, $user);
 
