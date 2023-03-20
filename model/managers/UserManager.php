@@ -28,7 +28,7 @@ class UserManager extends Manager
             $this->className
         );
     }
-    
+
     //get user by pseudonyme
     public function findOneByUser($user)
     {
@@ -41,4 +41,25 @@ class UserManager extends Manager
             $this->className
         );
     }
+
+    // public function addUser($email, $pseudo, $psw, $pswrepeat, $role)
+    // {
+    //     //validate email and $pseudo
+
+    //     if($email && $pseudo && $psw){
+    //         $userManager = new UserManager();
+    //         //mail nexiste pas
+    //         if($userManager->findOneByEmail($email)){
+    //             //if name exist pas
+    //             if($userManager->findOneByUser($pseudo)){
+    //                 if (($psw == $pswrepeat)) and strlen 
+
+
+    //         }
+
+    //     }
+
+
+
+    // }
 }

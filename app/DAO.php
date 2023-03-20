@@ -55,6 +55,13 @@ abstract class DAO
 
     public static function update($sql, $params)
     {
+        echo "<br>sql=" . $sql;
+
+        foreach ($params as $key) {
+            echo ("" . $key);
+            // echo ('val' . $val);
+        }
+
         try {
             $stmt = self::$bdd->prepare($sql);
 

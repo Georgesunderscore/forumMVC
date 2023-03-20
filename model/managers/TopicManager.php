@@ -52,13 +52,21 @@ class TopicManager extends Manager
         }
     }
     // updateTopic($idTopic,$title, $sujet, $category, $user);
+    //, $locked to do 
     public function updateTopic($id, $title, $sujet, $category, $user)
     {
 
         $topicManager = new TopicManager;
-        $data = ['id_topic' => $id, 'title' => $title, 'sujet' => $sujet, 'locked' => '0', 'category_id' => $category, 'user_id' => $user];
+        $data = ['id_topic' => $id, 'title' => $title, 'sujet' => $sujet, 'category_id' => $category, 'user_id' => $user];
+
+
+        // foreach ($params as $key) {
+        //     echo (" " . $key);
+        //     // echo ('val' . $val);
+        // }
         if ($title && $sujet) {
             $last = $topicManager->update($data);
         }
+        // die;
     }
 }

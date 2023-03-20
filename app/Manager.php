@@ -90,32 +90,74 @@ abstract class Manager
         // SET colonne_1 = 'valeur 1', colonne_2 = 'valeur 2', colonne_3 = 'valeur 3'
         // WHERE condition
         $sql = "update " . $this->tableName . " ";
-        $buildsql = "";
+        $buildsql = " SET";
 
-
-        foreach ($keys as $key) {
-            if (!str_contains($key, 'id')) {
-                foreach ($values as $value) {
-                    $buildsql = $buildsql . " SET " . $key . '=:' . $key . ' ';
-                    $params[] = $key . '=>' . $value;
-                }
+        $i = 0;
+        foreach ($data as $key => $value) {
+            $i += 1;
+            if (!str_starts_with($key, 'id') && count($data) > $i) {
+                $buildsql = $buildsql .  "  " . $key . '=:' . $key . ' ,';
+                // $params[] =  ":{" . $key . "}" . "=>" . "" . $value . "";
+                $params["$key"] = $value;
+            } elseif (!str_starts_with($key, 'id') && count($data) == $i) {
+                $buildsql = $buildsql .  "  " . $key . '=:' . $key . '';
+                // $params[] =  ":{" . $key . "}" . "=>" . "" . $value . "";
+                $params["$key"] = $value;
             }
         }
 
+        //     function update($table, $data, $id)
+        // {
+
+        //      $setPart = array();
+        //      $bindings = array();
+
+        //      foreach ($data as $key => $value)
+        //      {
+        //         $setPart[] = "{$key} = :{$key}";
+        //         $bindings[":{$key}"] = $value;
+        //      }
+
+        //       $bindings[":id"] = $id;
+
+        //       $sql = "UPDATE {$table} SET ".implode(', ', $setPart)." WHERE ID = :id";
+        //       $stmt = $pdo->prepare($sql);
+        //       $stmt->execute($bindings);
+
+        // }
+
+        // [
+        //     "nom" => $nom,
+        //     "prenom" => $prenom,
+        //     "sexe" => $sexe,
+        //     "dn" => $dn
+        // ]
+
+
         $condition = "";
+
         foreach ($data as $key => $value) {
-            if (str_contains($key, 'id')) {
-                $condition =  $key . "" . $value;
+            if (str_starts_with($key, 'id')) {
+                $condition =  $key . "=" . $value;
             }
         }
 
         $sql = $sql . $buildsql;
         $sql = $sql . " WHERE " . $condition;
 
+
+        // foreach ($data as $key) {
+        //     echo ("" . $key);
+        //     // echo ('val' . $val);
+        // }
+
+
         //update 
         try {
-            echo ($sql);
-            echo ($params);
+            // echo ('sql' . $sql);
+            // echo ('params');
+
+
 
             return DAO::update($sql, $params);
         } catch (\PDOException $e) {

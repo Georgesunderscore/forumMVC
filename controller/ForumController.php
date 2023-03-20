@@ -139,7 +139,7 @@ class ForumController extends AbstractController implements ControllerInterface
         // if (isset($_GET['id'])) {
         //     $id = $_GET['id'];
         // }
-        
+
         //get from variable 
         $idTopic = $id;
 

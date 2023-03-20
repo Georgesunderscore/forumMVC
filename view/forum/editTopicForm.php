@@ -38,6 +38,7 @@ $topic = $result["data"]['topic'];
         <textarea id="sujet" type="text" cols="100" rows="5" name="sujet" placeholder="sujet" required> <?= $topic->getSujet() ?> </textarea>
     </div>
 
+    <!-- locked -->
 
     <input class="btn btn-primary" type="submit" name="submit" value="Update">
 </form>
