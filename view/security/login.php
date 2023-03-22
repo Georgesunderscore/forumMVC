@@ -20,7 +20,7 @@
 
 
 
-        <input class="signinbtn" type="submit" name="submit" value="Login">
+        <input class="signinbtn" type="submit" name="submitlogin" value="Login">
 
 
         <label>

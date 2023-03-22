@@ -50,4 +50,12 @@ class Session
         }
         return false;
     }
+
+    public static function isMembre()
+    {
+        if (self::getUser() && self::getUser()->hasRole("membre")) {
+            return true;
+        }
+        return false;
+    }
 }

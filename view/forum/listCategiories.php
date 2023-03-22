@@ -20,20 +20,25 @@ $categories = $result["data"]['categories'];
         ?>
             <tr>
                 <td>
-                    <div ><?= $category->getCategoryName() ?>
+                    <div><?= $category->getCategoryName() ?>
                 </td>
                 <td>
+                    <?php
+                    if (App\Session::isAdmin()) {
+                    ?>
+                        <div class="navbaritem navbartabitem nav-left ">
+                            <a href="index.php?ctrl=forum&action=editCategory&id=<?= $category->getId() ?>">edit</a>
 
-                <div class="navbaritem navbartabitem nav-left ">
-                        <a href="index.php?ctrl=forum&action=editCategory&id=<?= $category->getId() ?>">edit</a>
-                        
-                    </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
 
-                <div class="navbaritem navbartabitem nav-left ">
+                    <div class="navbaritem navbartabitem nav-left ">
                         <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">>></a>
 
                     </div>
-                    
+
 
 
                 </td>

@@ -28,7 +28,7 @@
                         <?php
                         if (App\Session::isAdmin()) {
                         ?>
-                            <a href="index.php?ctrl=security&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=security&action=listusers">Voir la liste des gens</a>
 
                         <?php
                         }
@@ -60,11 +60,11 @@
                             }
                             ?>
                             <div class="navbaritem nav-right ">
-                                <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
-
+                                <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
                             </div>
                             <div class="navbaritem nav-right ">
-                                <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
+                                <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
+
                             </div>
                         <?php
                         } else {
@@ -109,9 +109,19 @@
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
     <script>
+        // $(document).ready(function() {
+        //     $(".message").each(function() {
+        //         $(this).slideUp();
+        //     });
+        //     $(".message").click(function() {
+        //         $(this).slideDown();
+        //     });
+        // });
+
+
         $(document).ready(function() {
             $(".message").each(function() {
                 if ($(this).text().length > 0) {
@@ -123,6 +133,7 @@
             $(".delete-btn").on("click", function() {
                 return confirm("Etes-vous sûr de vouloir supprimer?")
             })
+
             tinymce.init({
                 selector: '.post',
                 menubar: false,
@@ -137,7 +148,7 @@
                     'removeformat | help',
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
-        })
+        });
 
 
 
@@ -156,10 +167,8 @@
     </script>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
 </body>
 
 </html>

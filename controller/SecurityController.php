@@ -27,7 +27,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 ]
             ];
         } else {
-            $this->redirectTo('Home');
+            $this->redirectTo('forum', 'listTopics');
         }
     }
     public function hashPass($psw)
@@ -77,7 +77,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     public function authentification()
     {
         $userManager = new UserManager();
-        if (isset($_POST['submit'])) {
+        if (isset($_POST['submitlogin'])) {
 
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
             $psw = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);

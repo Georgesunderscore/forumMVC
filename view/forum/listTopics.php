@@ -5,10 +5,17 @@ $topics = $result["data"]['topics'];
 ?>
 
 <h1>liste list topics</h1>
+<?php
+if (App\Session::isAdmin() || App\Session::isMembre()) {
+?>
 
-<div class="navbaritem navbartabitem nav-right ">
-    <a href="index.php?ctrl=forum&action=topicForm">add +</a>
-</div>
+    <div class="navbaritem navbartabitem nav-right ">
+        <a href="index.php?ctrl=forum&action=topicForm">add +</a>
+    </div>
+
+<?php
+}
+?>
 
 <table class="table">
     <thead>
@@ -34,10 +41,15 @@ $topics = $result["data"]['topics'];
                 </td>
 
                 <td>
-
-                    <div class="navbaritem navbartabitem nav-left ">
-                        <a href="index.php?ctrl=forum&action=editTopicForm&id=<?= $topic->getId() ?>">edit</a>
-                    </div>
+                    <?php
+                    if (App\Session::isAdmin()) {
+                    ?>
+                        <div class="navbaritem navbartabitem nav-left ">
+                            <a href="index.php?ctrl=forum&action=editTopicForm&id=<?= $topic->getId() ?>">edit</a>
+                        </div>
+                    <?php
+                    }
+                    ?>
                     <div class="navbaritem navbartabitem nav-left ">
                         <a href="index.php?ctrl=forum&action=listPostsByTopic&id=<?= $topic->getId() ?>">>></a>
                     </div>
