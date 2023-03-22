@@ -27,7 +27,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 ]
             ];
         } else {
-            $this->redirectTo('index', 'home');
+            $this->redirectTo('Home');
         }
     }
     public function hashPass($psw)
@@ -65,7 +65,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     {
         Session::setUser(null);
 
-        $this->redirectTo('forum', 'listTopics');
+        $this->redirectTo('forum', 'index');
         // Session::setUser(null);
     }
 
