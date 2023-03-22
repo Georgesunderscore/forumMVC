@@ -66,7 +66,8 @@ abstract class DAO
             echo ("val " . $val);
             // echo ('val' . $val);
         }
-
+        // var_dump($params);
+        // die();
         try {
 
 

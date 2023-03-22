@@ -68,6 +68,27 @@ class ForumController extends AbstractController implements ControllerInterface
         ];
     }
 
+    public function closeOpenTopic($id)
+    {
+
+        $topicManager = new TopicManager();
+
+        $topic = $topicManager->findOneById($id);
+        echo ($topic->getLocked());
+
+        if ($topic->getLocked() == '0') {
+            $topic->setLocked('1');
+        } else {
+            $topic->setLocked('0');
+        }
+        echo ($topic->getLocked());
+        // die();
+        $topicManager->updateTopicStatus($id, $topic->getLocked());
+
+        $this->redirectTo('forum', 'listTopics');
+    }
+
+
 
     public function listCategories()
     {

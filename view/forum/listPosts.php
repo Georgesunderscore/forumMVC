@@ -28,7 +28,7 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
             <th>Title</th>
             <th>Date Creation</th>
         </tr>
-        
+
     </thead>
     <tbody>
 

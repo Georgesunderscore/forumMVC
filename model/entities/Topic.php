@@ -10,7 +10,7 @@ final class Topic extends Entity
         private $id;
         private $title;
         private $dateCreation;
-        private $closed;
+        private $locked;
         private $sujet;
 
         private $user;
@@ -94,29 +94,11 @@ final class Topic extends Entity
         }
 
 
-        /**
-         * Get the value of closed
-         */
-        public function getClosed()
-        {
-                return $this->closed;
-        }
 
-        /**
-         * Set the value of closed
-         *
-         * @return  self
-         */
-        public function setClosed($closed)
-        {
-                $this->closed = $closed;
-
-                return $this;
-        }
 
         /**
          * Get the value of category
-         */ 
+         */
         public function getCategory()
         {
                 return $this->category;
@@ -126,7 +108,7 @@ final class Topic extends Entity
          * Set the value of category
          *
          * @return  self
-         */ 
+         */
         public function setCategory($category)
         {
                 $this->category = $category;
@@ -136,7 +118,7 @@ final class Topic extends Entity
 
         /**
          * Get the value of sujet
-         */ 
+         */
         public function getSujet()
         {
                 return $this->sujet;
@@ -146,10 +128,28 @@ final class Topic extends Entity
          * Set the value of sujet
          *
          * @return  self
-         */ 
+         */
         public function setSujet($sujet)
         {
                 $this->sujet = $sujet;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of locked
+         */
+        public function getLocked()
+        {
+                return $this->locked;
+        }
+
+        /**
+         * Set the value of locked
+         */
+        public function setLocked($locked): self
+        {
+                $this->locked = $locked;
 
                 return $this;
         }
