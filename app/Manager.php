@@ -92,16 +92,22 @@ abstract class Manager
         $buildsql = " SET";
 
         $i = 0;
+        var_dump($data);
         foreach ($data as $key => $value) {
             $i += 1;
             if (!str_starts_with($key, 'id') && count($data) > $i) {
                 $buildsql = $buildsql .  "  " . $key . '=:' . $key . ' ,';
                 // $params[] =  ":{" . $key . "}" . "=>" . "" . $value . "";
                 $params[":{$key}"] = $value;
+
+                echo "not start with id " . $key;
+                echo $value;
             } elseif (!str_starts_with($key, 'id') && count($data) == $i) {
                 $buildsql = $buildsql .  "  " . $key . '=:' . $key . '';
                 // $params[] =  ":{" . $key . "}" . "=>" . "" . $value . "";
                 $params[":{$key}"] = $value;
+                echo "not start with id " . $key;
+                echo $value;
             }
         }
 

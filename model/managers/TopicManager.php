@@ -39,6 +39,27 @@ class TopicManager extends Manager
         );
     }
 
+    // public function findTopicCategory($id)
+    // // , $order)
+    // {
+    //     // var_dump($id);
+    //     // var_dump($order);
+
+    //     // $orderQuery = ($order) ? "ORDER BY  t." . $order[0] : "";
+    //     // var_dump($orderQuery);
+    //     $sql = "select t.category_id
+    //             from " . $this->tableName . " t
+    //             where t.topic_id = :id
+    //             ";
+    //     // $orderQuery DESC 
+    //     // var_dump($sql);
+
+    //     return $this->getOneOrNullResult(
+    //         DAO::select($sql, ['id' => $id]),
+    //         $this->className
+    //     );
+    // }
+
     public function addTopic($title, $sujet, $category, $user)
     {
 
@@ -58,9 +79,10 @@ class TopicManager extends Manager
 
         $topicManager = new TopicManager;
         $data = ['id_topic' => $id, 'title' => $title, 'sujet' => $sujet, 'category_id' => $category, 'user_id' => $user];
+        var_dump($data);
 
 
-        // foreach ($params as $key) {
+        // foreach ($params as $key) {  
         //     echo (" " . $key);
         //     // echo ('val' . $val);
         // }

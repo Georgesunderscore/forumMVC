@@ -2,6 +2,8 @@
 
 $categories = $result["data"]['categories'];
 $topic = $result["data"]['topic'];
+// $catid = $result["data"]['catgoryid'];
+
 
 
 ?>
@@ -18,7 +20,7 @@ $topic = $result["data"]['topic'];
     <div class="form-group">
         <label for="sel1">Category:</label>
         <select class="form-control" id="sel1" name="category" require>
-            <option value='<?= $topic->getId() ?>'><?= $topic->getCategory()->getCategoryName() ?></option>
+            <option value='<?= $topic->getCategory()->getId() ?>'><?= $topic->getCategory()->getId() ?> <?= $topic->getCategory()->getCategoryName() ?></option>
 
             <?php
             foreach ($categories as $obj) { ?>

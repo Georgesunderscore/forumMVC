@@ -51,6 +51,12 @@ button:hover {
   /* padding: 14px 20px; */
   background-color: #f44336;
 }
+.signupbtn {
+  /* padding: 14px 20px; */
+  background-color: #54b351;
+}
+
+
 
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {

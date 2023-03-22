@@ -28,7 +28,7 @@
                         <?php
                         if (App\Session::isAdmin()) {
                         ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=security&action=users">Voir la liste des gens</a>
 
                         <?php
                         }
@@ -91,7 +91,7 @@
         $(document).ready(function() {
             $(".message").each(function() {
                 if ($(this).text().length > 0) {
-                    $(this).slideDown(500, function() {
+                    $(this).slideDown(400, function() {
                         $(this).delay(3000).slideUp(500)
                     })
                 }

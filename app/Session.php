@@ -15,6 +15,7 @@
         /**
         *   renvoie un message de la catégorie $categ, s'il y en a !
         */
+        
         public static function getFlash($categ){
             
             if(isset($_SESSION[$categ])){

@@ -23,7 +23,7 @@ class UserManager extends Manager
             from " . $this->tableName . " u
             where u.email = :email";
 
-        return $this->getOnOrNullResult(
+        return $this->getOneOrNullResult(
             DAO::select($sql, ['email' => $email], false),
             $this->className
         );
@@ -36,30 +36,26 @@ class UserManager extends Manager
             from " . $this->tableName . " u
             where u.pseudonyme = :user";
 
-        return $this->getOnOrNullResult(
+        return $this->getOneOrNullResult(
             DAO::select($sql, ['user' => $user], false),
             $this->className
         );
     }
+ 
 
-    // public function addUser($email, $pseudo, $psw, $pswrepeat, $role)
-    // {
-    //     //validate email and $pseudo
-
-    //     if($email && $pseudo && $psw){
-    //         $userManager = new UserManager();
-    //         //mail nexiste pas
-    //         if($userManager->findOneByEmail($email)){
-    //             //if name exist pas
-    //             if($userManager->findOneByUser($pseudo)){
-    //                 if (($psw == $pswrepeat)) and strlen 
+    public function addUser($email, $pseudo, $psw, $role)
+    {
+        $userManager = new UserManager;
+        $md5passhash = hash('md5', $psw, false);
+        echo "test";
+        echo $md5passhash;
 
 
-    //         }
-
-    //     }
-
-
-
-    // }
+        $data = ['email' => $email, 'pseudonyme' => $pseudo, 'password' => $md5passhash, 'role' => $role];
+        // var_dump($data);
+        // die();
+        if ($email && $md5passhash) {
+            $last = $userManager->add($data);
+        }
+    }
 }
