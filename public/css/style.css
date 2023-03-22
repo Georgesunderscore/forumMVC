@@ -140,12 +140,7 @@ button:hover {
     height: 28px;
   }
   
-  .closedbtn > a{
-    color: #54b351;
-  }
-  .opendbtn > a{
-    color: #f44336;
-  }
+
   
   /* Navbar links */
   .navbaritem a {
@@ -169,6 +164,13 @@ button:hover {
 
   }
 
+  .openbtn a {
+    background-color: #f44336;
+  }
+
+  .closedbtn > a{
+    color: #54b351;
+  }
 
   /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
