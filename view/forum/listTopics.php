@@ -48,9 +48,9 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
                             <a href="index.php?ctrl=forum&action=editTopicForm&id=<?= $topic->getId() ?>">edit</a>
                         </div>
 
-                        <div class="navbaritem navbartabitem nav-left ">
+                        <div class="navbaritem navbartabitem nav-left <?= ($topic->getLocked() == '0' ? 'closedbtn' : 'openbtn') ?> ">
                             <a href="index.php?ctrl=forum&action=closeOpenTopic&id=<?= $topic->getId() ?>">
-                                <?= ($topic->getLocked() == '0' ? 'Close' : 'Open') ?>
+                                <?= ($topic->getLocked() == '0' ? 'Close Topic' : 'Open Topic') ?>
 
                             </a>
                         </div>

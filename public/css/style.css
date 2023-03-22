@@ -139,6 +139,14 @@ button:hover {
     font-size:12px ;
     height: 28px;
   }
+  
+  .closedbtn > a{
+    color: #54b351;
+  }
+  .opendbtn > a{
+    color: #f44336;
+  }
+  
   /* Navbar links */
   .navbaritem a {
     text-decoration: dashed;
