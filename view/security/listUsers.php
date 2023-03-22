@@ -30,7 +30,7 @@ $users = $result["data"]['users'];
                     <div><?= $user->getEmail() ?>
                 </td>
                 <td>
-                    <div><?= $topic->getDateInscription() ?>
+                    <div><?= $user->getDateinscription() ?>
                 </td>
 
                 <td>

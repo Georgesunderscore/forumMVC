@@ -16,17 +16,25 @@ class SecurityController extends AbstractController implements ControllerInterfa
     public function index()
     {
 
+        //if is admin list all users 
 
         $userManager = new UserManager();
-
-        return [
-            "view" => VIEW_DIR . "security/listUsers.php",
-            "data" => [
-                "users" => $userManager->findAll(["dateinscription", "DESC"])
-            ]
-        ];
+        if (App\Session::getUser()->isAdmin()) {
+            return [
+                "view" => VIEW_DIR . "security/listUsers.php",
+                "data" => [
+                    "users" => $userManager->findAll(["dateinscription", "DESC"])
+                ]
+            ];
+        } else {
+            $this->redirectTo('security', 'home');
+        }
     }
-
+    public function hashPass($psw)
+    {
+        $md5passhash = hash('md5', $psw, false);
+        return $md5passhash;
+    }
     // public function listTopics()
     // {
     //     $userManager = new UserManager();
@@ -59,36 +67,54 @@ class SecurityController extends AbstractController implements ControllerInterfa
         if (isset($_POST['submit'])) {
 
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL, FILTER_VALIDATE_EMAIL);
-            $psw = filter_input(INPUT_POST, 'psw', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $psw = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
 
             //test if the user have access to
             if ($email && $psw && $email != null) {
+
                 //hash the password
                 //get the user from email and password hash
+
                 $userbyemail = $userManager->findOneByEmail($email);
+
+
                 if ($userbyemail != null) {
-                    $hash = $userbyemail->getPassword();
+                    $hashedpass = $userbyemail->getPassword();
+
+
                     //mot compare avec le hash valider 
-                    // if( verify($hash , $password){
-                    Session::setUser($userbyemail);
+                    if ($this->verify($hashedpass, $psw)) {
+                        Session::setUser($userbyemail);
+                        $this->redirectTo('security', 'index');
+                        App\Session::addFlash("success", "Welcome to home page");
 
-                    $this->redirectTo('forum', 'index');
-
-                    // }
+                        $this->redirectTo('security', 'index');
+                    }
                 }
             } else {
+                App\Session::addFlash("error", " Login Failed Email or Password not valid");
+                $this->redirectTo('security', 'login');
 
-                return [
-                    "view" => VIEW_DIR . "security/login.php",
-                    "data" => [
-                        "" => ""
-                    ]
-                ];
+
+                // return [
+                //     "view" => VIEW_DIR . "security/login.php",
+                //     "data" => [
+                //         "" => ""
+                //     ]
+                // ];
             }
         }
     }
 
-    // public function verify  to do 
+    public function verify($passhash, $pass)
+    {
+        if ($this->hashPass($pass == $passhash)) {
+            return true;
+        } else {
+            return false;
+        };
+        return false;
+    }
 
 
 
@@ -141,7 +167,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                         if (($psw == $pswrepeat) and strlen($psw) >= 8) {
                             echo ("8");
                             // $psw to be hached 
-                            $userManager->addUser($email, $pseudo, $psw, $role);
+                            $userManager->addUser($email, $pseudo, $this->hashPass($psw), $role);
                             echo ("9");
                             // die();
 

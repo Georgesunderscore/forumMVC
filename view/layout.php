@@ -41,8 +41,31 @@
 
                         if (App\Session::getUser()) {
                         ?>
-                            <a class="nav-left" href="index.php?ctrl=security&action=viewProfile"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser() ?></a>
-                            <a href="index.php?ctrl=security&action=logout">Déconnexion</a>
+                            <a class=" navbaritem nav-left" href="index.php?ctrl=security&action=viewProfile">
+                                <span class="fas fa-user nav-left"></span>&nbsp;<?= App\Session::getUser()->getPseudonyme() ?>&nbsp;</a>
+
+                            <a class=" navbaritem nav-left" href="index.php?ctrl=security&action=logout">Déconnexion</a>
+
+
+
+                            <?php
+
+                            if (App\Session::isAdmin()) {
+                            ?>
+                                <div class="navbaritem nav-right ">
+                                    <a href="index.php?ctrl=forum&action=listusers">la liste des users</a>
+
+                                </div>
+                            <?php
+                            }
+                            ?>
+                            <div class="navbaritem nav-right ">
+                                <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a>
+
+                            </div>
+                            <div class="navbaritem nav-right ">
+                                <a href="index.php?ctrl=forum&action=listCategories">la liste des categories</a>
+                            </div>
                         <?php
                         } else {
                         ?>
@@ -53,6 +76,7 @@
                             <!-- <a href="./view/security/login.php">Connexion</a> -->
 
                             <!--<a href="./view/security/register.php">Inscription</a>-->
+
                             <div class="navbaritem nav-right ">
                                 <a href="index.php?ctrl=security&action=register">Inscription</a>
                             </div>

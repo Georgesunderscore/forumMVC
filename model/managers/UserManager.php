@@ -41,20 +41,16 @@ class UserManager extends Manager
             $this->className
         );
     }
- 
+
+
 
     public function addUser($email, $pseudo, $psw, $role)
     {
         $userManager = new UserManager;
-        $md5passhash = hash('md5', $psw, false);
-        echo "test";
-        echo $md5passhash;
-
-
-        $data = ['email' => $email, 'pseudonyme' => $pseudo, 'password' => $md5passhash, 'role' => $role];
+        $data = ['email' => $email, 'pseudonyme' => $pseudo, 'password' => $psw, 'role' => $role];
         // var_dump($data);
         // die();
-        if ($email && $md5passhash) {
+        if ($email && $psw) {
             $last = $userManager->add($data);
         }
     }

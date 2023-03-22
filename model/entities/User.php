@@ -39,13 +39,13 @@ final class User extends Entity
         return $this;
     }
 
-    public function getCreationdate()
+    public function getDateinscription()
     {
         $formattedDate = $this->dateinscription->format("d/m/Y, H:i:s");
         return $formattedDate;
     }
 
-    public function setCreationdate($date)
+    public function setDateinscription($date)
     {
         $this->dateinscription = new \DateTime($date);
         return $this;
@@ -121,5 +121,13 @@ final class User extends Entity
         $this->role = $role;
 
         return $this;
+    }
+    public function hasRole($s)
+    {
+        if ($this->role == $s) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
