@@ -53,7 +53,7 @@
                             if (App\Session::isAdmin()) {
                             ?>
                                 <div class="navbaritem nav-right ">
-                                    <a href="index.php?ctrl=forum&action=listusers">la liste des users</a>
+                                    <a href="index.php?ctrl=security&action=listusers">la liste des users</a>
 
                                 </div>
                             <?php

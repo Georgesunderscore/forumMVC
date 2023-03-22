@@ -19,7 +19,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         //if is admin list all users 
 
         $userManager = new UserManager();
-        if (App\Session::getUser()->isAdmin()) {
+        if (App\Session::isAdmin()) {
             return [
                 "view" => VIEW_DIR . "security/listUsers.php",
                 "data" => [
@@ -27,7 +27,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                 ]
             ];
         } else {
-            $this->redirectTo('security', 'home');
+            $this->redirectTo('index', 'home');
         }
     }
     public function hashPass($psw)
@@ -61,6 +61,19 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
 
+    public function logout()
+    {
+        Session::setUser(null);
+
+        $this->redirectTo('forum', 'listTopics');
+        // Session::setUser(null);
+    }
+
+
+
+
+
+
     public function authentification()
     {
         $userManager = new UserManager();
@@ -85,9 +98,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
                     //mot compare avec le hash valider 
                     if ($this->verify($hashedpass, $psw)) {
                         Session::setUser($userbyemail);
-                        $this->redirectTo('security', 'index');
-                        App\Session::addFlash("success", "Welcome to home page");
-
+                        App\Session::addFlash("success", "Welcome to home page " . $userbyemail->getRole());
                         $this->redirectTo('security', 'index');
                     }
                 }
