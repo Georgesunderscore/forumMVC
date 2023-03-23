@@ -58,4 +58,18 @@ class Session
         }
         return false;
     }
+    
+
+    public static function isAuteur($user){
+        if (self::getUser()) {
+            if($user->getId() == self::getUser()->getId()){
+                return true;
+            }
+            else{
+                return false;
+            }
+            }
+            return false;
+        }
+
 }

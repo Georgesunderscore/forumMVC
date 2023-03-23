@@ -1,4 +1,5 @@
 <?php
+use App\Session;
 
 $topics = $result["data"]['topics'];
 
@@ -42,13 +43,15 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
 
                 <td>
                     <?php
-                    if (App\Session::isAdmin()) {
+                // if($sujet->getMembre()->getId() == $_SESSION["user"]->getId()){
+
+                    if (Session::isAdmin() || (Session::isMembre() && Session::isAuteur($topic->getUser()) ) ) {
                     ?>
                         <div class="navbaritem navbartabitem nav-left ">
                             <a href="index.php?ctrl=forum&action=editTopicForm&id=<?= $topic->getId() ?>">edit</a>
                         </div>
 
-                        <div class="navbaritem navbartabitem nav-left <?= ($topic->getLocked() == '0' ? 'closedbtn' : 'opendbtn') ?> ">
+                        <div class="navbaritem navbartabitem nav-left <?= ($topic->getLocked() == '0' ? 'closebtn' : 'openbtn') ?> ">
                             <a href="index.php?ctrl=forum&action=closeOpenTopic&id=<?= $topic->getId() ?>">
                                 <?= ($topic->getLocked() == '0' ? 'Close Topic' : 'Open Topic') ?>
 

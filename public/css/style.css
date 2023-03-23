@@ -134,18 +134,19 @@ button:hover {
     font-size: 17px;
   }
   
-  .navbartabitem {
-    width: auto;
-    font-size:12px ;
-    height: 28px;
-  }
   
 
   
   /* Navbar links */
   .navbaritem a {
     text-decoration: dashed;
-    color: #fdf5f5;
+    color: #ffdfdf;
+  }
+  .navbartabitem {
+    width: auto;
+    font-size:12px ;
+    height: 28px;
+    background-color: #8f0707;
   }
 
   .nav-left{
@@ -159,16 +160,17 @@ button:hover {
     text-align: center;
     color: white;
     text-decoration: none;
-    font-size: 17px;
 
 
   }
 
   .openbtn a {
-    background-color: #f44336;
+    color: #ff1100;
+    
+
   }
 
-  .closedbtn > a{
+  .closebtn a {
     color: #54b351;
   }
 
