@@ -268,4 +268,27 @@ class SecurityController extends AbstractController implements ControllerInterfa
             // App\Session::addFlash("error", "Empty Not Allowed");
         }
     }
+
+
+
+    
+    public function autoriserUser($id)
+    {
+
+        $userManager = new UserManager();
+
+        $user = $userManager->findOneById($id);
+        echo ($user->getRole());
+
+        if ($user->getRole() == 'bannie') {
+            $user->setRole('membre');
+        } else {
+            $user->setRole('bannie');
+        }
+        // echo ($topic->getLocked());
+        // die();
+        $userManager->updateUserStatus($id, $user->getRole());
+
+        $this->redirectTo('security', 'listUsers');
+    }
 }

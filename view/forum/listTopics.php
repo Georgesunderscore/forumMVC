@@ -2,13 +2,17 @@
 use App\Session;
 
 $topics = $result["data"]['topics'];
+// var_dump($topics);
 // $topics = for
+// $topics = array_filter( $topics, function( $v ) { return $v->getLocked()!=0; } );
+
 
 
 ?>
 
 <h1>liste list topics</h1>
 <?php
+//  && App\Session::getUser()->getRole()!="bannie"
 if (App\Session::isAdmin() || App\Session::isMembre()) {
 ?>
 
@@ -33,7 +37,9 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
 
         <?php
         foreach ($topics as $topic) {
+            if(Session::isAdmin() || ($topic->getLocked()!=1 && !Session::isAdmin())){
 
+            
         ?>
 
             <tr>
@@ -51,7 +57,8 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
                     <?php
                 // if($sujet->getMembre()->getId() == $_SESSION["user"]->getId()){
 
-                    if (Session::isAdmin() || (Session::isMembre() && Session::isAuteur($topic->getUser()) ) ) {
+                    if (Session::isAdmin() || 
+                    (Session::isMembre() && Session::isAuteur($topic->getUser()) ) ) {
                     ?>
                         <div class="navbaritem navbartabitem nav-left ">
                             <a href="index.php?ctrl=forum&action=editTopicForm&id=<?= $topic->getId() ?>">edit</a>
@@ -75,6 +82,7 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
             </tr>
         <?php
         }
+    }
         ?>
     </tbody>
 

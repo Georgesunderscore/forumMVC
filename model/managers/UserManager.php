@@ -56,4 +56,14 @@ class UserManager extends Manager
             $last = $userManager->add($data);
         }
     }
+
+    public function updateUserStatus($idUser, $role)
+    {
+        $userManager = new UserManager;
+        $data = ['id_User' => $idUser, 'role' => $role];
+        if ($idUser != null && $role != null) {
+            $last = $userManager->update($data);
+        }
+    }
+
 }

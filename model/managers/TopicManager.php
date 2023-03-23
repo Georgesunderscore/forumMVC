@@ -94,20 +94,10 @@ class TopicManager extends Manager
 
     public function updateTopicStatus($idTopic, $locked)
     {
-
         $topicManager = new TopicManager;
         $data = ['id_topic' => $idTopic, 'locked' => $locked];
-
-        // foreach ($params as $key) {  
-        //     echo (" " . $key);
-        //     // echo ('val' . $val);
-        // }
         if ($idTopic != null && $locked != null) {
-
-
-
             $last = $topicManager->update($data);
         }
-        // die;
     }
 }

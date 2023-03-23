@@ -35,6 +35,15 @@ $users = $result["data"]['users'];
 
                 <td>
 
+                
+                    <div class="navbaritem navbartabitem nav-left <?= ($user->getRole() == 'bannie' ? 'closebtn' : 'openbtn') ?> ">
+                                <a href="index.php?ctrl=security&action=autoriserUser&id=<?= $user->getId() ?>">
+                                    <?= ($user->getRole() == 'bannie' ? 'Autoriser User' : 'Bannie User') ?>
+
+                                </a>
+                    </div>
+
+
                     <div class="navbaritem navbartabitem nav-left ">
                         <--! todo -->
 

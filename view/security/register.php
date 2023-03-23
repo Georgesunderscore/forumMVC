@@ -1,3 +1,6 @@
+<?php
+$rolesList = ["role1"=> "membre","role2" => "ROLE_ADMIN","role3" => "bannie"];
+?>
 <div class="register-div">
 
     <form id="register-form" action="index.php?ctrl=security&action=addUser" method="POST"
@@ -31,9 +34,20 @@
 
 
             <!-- visible for adminlist fix for roles #}-->
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>if admin visible Role :</label>
                 <input name="role" value="membre" readonly hidden />
+            </div> -->
+
+            <div class="form-group">
+                <label for="sel1">Role:</label>
+                <select class="form-control" id="sel1" name="role" require>
+                    <option value="">Selectionner</option>
+                    <?php
+                    foreach ($rolesList as $obj => $val) { ?>
+                        <option value='<?= $val ?>'><?= $val ?></option>
+                    <?php } ?>
+                </select>
             </div>
 
             <div class="form-group">

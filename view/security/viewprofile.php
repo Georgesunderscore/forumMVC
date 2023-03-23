@@ -12,7 +12,7 @@ $user = Session::getUser();
     <section id="profile-form" class="profile-form" action="index.php?ctrl=security&action=">
         <!-- <h2>Profile <?= $user->getProfileimgurl()?></h2> -->
         <h2>Profile <?= $user->getPseudonyme()?></h2>
-        <img class="img-rounded" width="200" height="200" src='<?= $user->getProfileimgurl()?>' width='300px'>
+        <img class="img-rounded" width="200" height="200" src='<?= $user->getProfileimgurl()?>' width='300px' alt='image not found'>
         
         <br>
 
