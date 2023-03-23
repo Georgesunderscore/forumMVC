@@ -36,7 +36,6 @@ $categories = $result["data"]['categories'];
 
                     <div class="navbaritem navbartabitem nav-left ">
                         <a href="index.php?ctrl=forum&action=listTopicsByCategory&id=<?= $category->getId() ?>">>></a>
-
                     </div>
 
 

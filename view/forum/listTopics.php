@@ -2,6 +2,8 @@
 use App\Session;
 
 $topics = $result["data"]['topics'];
+// $topics = for
+
 
 ?>
 
@@ -23,6 +25,7 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
         <tr>
             <th>Title</th>
             <th>Date Creation</th>
+            <th>Auteur</th>
         </tr>
     </thead>
     <tbody>
@@ -39,6 +42,9 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
                 </td>
                 <td>
                     <div><?= $topic->getDateCreation() ?>
+                </td>
+                <td>
+                    <div><?= $topic->getUser()->getPseudonyme() ?>
                 </td>
 
                 <td>

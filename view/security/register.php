@@ -1,6 +1,7 @@
 <div class="register-div">
 
-    <form id="register-form" action="index.php?ctrl=security&action=addUser" method="POST">
+    <form id="register-form" action="index.php?ctrl=security&action=addUser" method="POST"
+          enctype= "multipart/form-data" >
         <div class="container-padding">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>
@@ -37,7 +38,7 @@
 
             <div class="form-group">
                 <label>Profile Image :</label>
-                <input type="file" name="image" placeholder="Profile Image" />
+                <input type="file" name="file" placeholder="Profile Image" />
             </div>
 
             <div class="form-group">

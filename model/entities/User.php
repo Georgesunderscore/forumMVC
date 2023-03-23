@@ -13,6 +13,7 @@ final class User extends Entity
     private $password;
     private $role;
     private $dateinscription;
+    private $profileimgurl;
 
     public function __construct($data)
     {
@@ -129,5 +130,25 @@ final class User extends Entity
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get the value of profileimgurl
+     */ 
+    public function getProfileimgurl()
+    {
+        return $this->profileimgurl;
+    }
+
+    /**
+     * Set the value of profileimgurl
+     *
+     * @return  self
+     */ 
+    public function setProfileimgurl($profileimgurl)
+    {
+        $this->profileimgurl = $profileimgurl;
+
+        return $this;
     }
 }

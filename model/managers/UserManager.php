@@ -44,10 +44,12 @@ class UserManager extends Manager
 
 
 
-    public function addUser($email, $pseudo, $psw, $role)
+    public function addUser($email, $pseudo, $psw, $role,$image)
     {
         $userManager = new UserManager;
-        $data = ['email' => $email, 'pseudonyme' => $pseudo, 'password' => $psw, 'role' => $role];
+        $data = ['email' => $email, 'pseudonyme' => $pseudo, 'password' => $psw
+        , 'role' => $role
+        ,'profileimgurl'=>$image];
         // var_dump($data);
         // die();
         if ($email && $psw) {

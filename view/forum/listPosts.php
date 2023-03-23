@@ -25,8 +25,9 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
 <table class="table">
     <thead>
         <tr>
-            <th>Title</th>
+            <th>Poste</th>
             <th>Date Creation</th>
+            <th>Auteur</th>
         </tr>
 
     </thead>
@@ -40,10 +41,13 @@ if (App\Session::isAdmin() || App\Session::isMembre()) {
 
                 <tr>
                     <td>
-                        <div><?= $post->getTitle() ?>
+                        <div><?= $post->getMessage() ?>
                     </td>
                     <td>
                         <div><?= $post->getDateCreation() ?>
+                    </td>
+                    <td>
+                        <div><?= $post->getUser()->getPseudonyme() ?>
                     </td>
 
                     <td>

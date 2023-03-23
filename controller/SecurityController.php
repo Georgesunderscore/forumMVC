@@ -59,6 +59,16 @@ class SecurityController extends AbstractController implements ControllerInterfa
             ]
         ];
     }
+    public function viewProfile()
+    {
+        return [
+            "view" => VIEW_DIR . "security/viewProfile.php",
+            "data" => [
+                "" => ""
+            ]
+        ];
+    }
+    
 
 
     public function logout()
@@ -90,6 +100,8 @@ class SecurityController extends AbstractController implements ControllerInterfa
 
                 $userbyemail = $userManager->findOneByEmail($email);
 
+                // echo($userbyemail->getProfileimgurl());
+                // die();
 
                 if ($userbyemail != null) {
                     $hashedpass = $userbyemail->getPassword();
@@ -97,9 +109,15 @@ class SecurityController extends AbstractController implements ControllerInterfa
 
                     //mot compare avec le hash valider 
                     if ($this->verify($hashedpass, $psw)) {
-                        Session::setUser($userbyemail);
-                        App\Session::addFlash("success", "Welcome to home page " . $userbyemail->getRole());
-                        $this->redirectTo('security', 'index');
+                        if( $userbyemail->getRole()!= 'bannie' ) {
+                            Session::setUser($userbyemail);
+                            App\Session::addFlash("success", "Welcome to home page " . $userbyemail->getRole());
+                            $this->redirectTo('security', 'index');
+                        }
+                        else{
+                            App\Session::addFlash("error", "User Bannie " . $userbyemail->getRole());
+                            $this->redirectTo('Home', 'index');
+                        }
                     }
                 }
             } else {
@@ -157,6 +175,32 @@ class SecurityController extends AbstractController implements ControllerInterfa
 
             $role = filter_input(INPUT_POST, 'role', FILTER_SANITIZE_SPECIAL_CHARS);
 
+            //profileimgurl
+            if(isset($_FILES['file'])){
+            $tmpName = $_FILES['file']['tmp_name'];
+            $name = $_FILES['file']['name'];
+            $size = $_FILES['file']['size'];
+            $error = $_FILES['file']['error'];
+            $tabExtension = explode('.', $name);
+            $extension = strtolower(end($tabExtension));
+            //Tableau des extensions que l'on accepte
+            $extensions = ['jpg', 'png', 'jpeg', 'gif'];
+            
+            $maxSize = 400000;
+            if(in_array($extension, $extensions) && $size <= $maxSize  && $error == 0){
+                $uniqueName = uniqid('', true);
+                //uniqid génère quelque chose comme ca : 5f586bf96dcd38.73540086
+                $file = $uniqueName.".".$extension;
+            
+                move_uploaded_file($tmpName, './upload/'.$file);
+            }
+            else{
+                echo "Mauvaise extension ou taille trop grande";
+            }
+
+
+            
+            }
             // $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
             // $remember = filter_input(INPUT_POST, 'remember', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -178,7 +222,8 @@ class SecurityController extends AbstractController implements ControllerInterfa
                         if (($psw == $pswrepeat) and strlen($psw) >= 8) {
                             echo ("8");
                             // $psw to be hached 
-                            $userManager->addUser($email, $pseudo, $this->hashPass($psw), $role);
+                            $userManager->addUser($email, $pseudo, $this->hashPass($psw), $role 
+                                                    ,'./upload/'.$file);
                             echo ("9");
                             // die();
 
