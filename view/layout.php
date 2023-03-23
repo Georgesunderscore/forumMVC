@@ -20,7 +20,10 @@
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
+                
+                <label>☰</label>
                 <nav>
+                    
                     <!--bootstrap-->
                     <div class="navbar" id="nav-left">
 
@@ -69,6 +72,8 @@
                         <?php
                         } else {
                         ?>
+                        	
+
                             <div class="navbaritem nav-left">
                                 <a href="index.php">Accueil</a>
                             </div>

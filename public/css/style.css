@@ -191,6 +191,42 @@ button:hover {
       width: 100%;
     }
   }
+
+label
+{
+    display: none;
+}
+ 
+@media all and (max-width: 991px)
+{
+    .navbar-css
+    {
+        height: 60px;
+        display: none;
+    }
+    .navbar
+    {
+        height: 60px;
+        display: none;
+      }
+      
+    nav{
+      
+      display: none;
+  
+    }
+    label 
+    {
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+    }
+}
   
 
 
